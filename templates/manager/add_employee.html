@@ -1,0 +1,21 @@
+{%extends 'manager/base.html'%}
+
+{%block title%}
+manager add_employee
+{%endblock title%}
+
+{%block head%}
+
+{%endblock head%}
+
+{%block content%}
+<center>
+    <form  method="post" >
+      {%csrf_token%}
+      {{EEUFO.as_div}}
+      {{EEPFO.as_div}}
+      <input type="submit" value="REgister-Employee">
+    </form>
+</center>
+
+{%endblock content%}

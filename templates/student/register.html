@@ -1,0 +1,22 @@
+{%extends 'student/base.html'%}
+
+{%block title%}
+student register
+{%endblock title%}
+
+{%block head%}
+
+{%endblock head%}
+
+{%block content%}
+
+<center>
+    <form method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+        {{studUserFormObj.as_div}}
+        {{studProfileObj.as_div}}
+        <!-- <button type="submit" >Register</button> -->
+         <input type="submit">
+    </form>
+</center>
+{%endblock content%}

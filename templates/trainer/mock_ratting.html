@@ -1,0 +1,17 @@
+{% extends 'trainer/base.html' %}
+
+
+{% block title %}
+trainer add  mock_rattng 
+{% endblock title %}
+
+
+{% block content %}
+<center>
+    <form  method="post">
+        {%csrf_token%}
+        {{ERFO.as_div}}
+        <input type="submit" value="add Ratting">
+    </form>
+</center>
+{% endblock content %}

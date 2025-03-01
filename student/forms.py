@@ -5,14 +5,8 @@ class StudentProfileForm(forms.ModelForm):
     class Meta:
         model = StudentProfile
         exclude =['username']
-        courses = [
-        ('Python Fullstack Development', 'Python Fullstack Development'),
-        ('Java Fullstack Development', 'Java Fullstack Development'),
-        ('MERN Fullstack Development', 'MERN Fullstack Development'),
-        ('Fullstack Testing', 'Fullstack Testing')
-       ]
         widgets ={
-            'course':forms.RadioSelect(choices=courses)
+            'course':forms.RadioSelect
         }
 
 

@@ -8,7 +8,7 @@ hr login
 
 {% block content %}
   
-<h1>student_login Page</h1>
+<h1>hr login Page</h1>
 <form method="post">
     {% csrf_token %}
     <div class="mb-3">
@@ -20,6 +20,7 @@ hr login
       <label for="exampleInputPassword1" class="form-label">Password</label>
       <input type="password" name="password" class="form-control" id="exampleInputPassword1">
     </div>
+     <a href="{%url 'hr_forget_password' %}"> forgot password</a>
     <button type="submit" class="btn btn-primary">HrLogin</button>
   </form>
 {% endblock content %}

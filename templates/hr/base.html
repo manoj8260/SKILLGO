@@ -26,14 +26,18 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'hr_home' %}">Home</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'mock_schedule' %}"> mock_schedule</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'get_all_student' %}">Download_student_details</a>
+              </li>
               {% if user.is_authenticated %}
                 
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'hr_logout' %}">Logout</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Something else</a>
-              </li>
+              
               <li class="nav-item">
                 <a class="nav-link" href="#">Update Resume</a>
               </li>

@@ -5,7 +5,63 @@ from django.http import HttpResponse
 from django.core.mail import  send_mail
 from django.contrib.auth import authenticate,login,logout
 from trainer.forms import   * 
+import random
 # Create your views here.
+
+
+
+
+
+class ForgetPasswordView(View):
+    def get(self,request):
+        return render(request,'trainer/forget_password.html')
+    def post(self,request):
+        username = request.POST.get('username')
+        UO = User.objects.get(username = username)
+        EPO =EmployeeProfile.objects.get(username = UO)
+        # if (UO.is_active and not  UO.is_staff and  EPO.role == 'Trainer') :
+        #     return HttpResponse('you are not a Trainer')
+        email = UO.email
+        otp = str(random.randint(999,10000))
+        request.session['forget_user']  = UO.username
+        request.session['verify_otp'] = otp 
+        print(otp)
+        send_mail(
+            'otp verification',
+            otp,
+            'kumarmanoj8260910@gmail.com',
+            [email],
+            fail_silently=False
+        )
+        return redirect('tariner_otp_verify')
+    
+class VerifyOtpView(View):
+    def get(self,request):
+        return render(request,'trainer/otp_verify.html') 
+    def post(self,request):
+        enter_otp = request.POST.get('otp')  
+        verify_otp  = request.session.get('verify_otp')
+
+        if enter_otp == verify_otp :
+            return redirect('trainer_new_password')
+        return HttpResponse('invalid otp') 
+
+class NewPasswordView(View):
+    def get(self,request):
+        return render(request,'trainer/new_password.html') 
+    def post(self,request):
+        pw1 =  request.POST.get('pw1')
+        pw2 =  request.POST.get('pw2')
+        un = request.session.get('forget_user')
+        UO = User.objects.get(username = un)
+        if pw1  == pw2 :
+            UO.set_password(pw1)
+            UO.save()
+            return redirect('trainer_login')
+        return HttpResponse('password does not match')
+
+
+
 
 class StartMock(View):
     def get(self,request):
